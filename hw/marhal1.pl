@@ -69,15 +69,15 @@ q6(Q_EMPL_NAME, IN_DRUGS) :-
   pharmacy_has_drugs(pharmacy(PHARMACY, _, _), drugs(IN_DRUGS, _), _, _, _),
   pharmacy_has_eployees(pharmacy(PHARMACY, _, _), employee(Q_EMPL_NAME, _), _).
 
-:- initialization writeln("\nТелефон аптеки, де є потрібні ліки (aspirin)").
-:- initialization forall(q1(X, aspirin), writeln(X)).
-:- initialization writeln("\nВ якій аптеці ціна на задані ліки є меншою за визначену величину (aspirin, < 200)").
-:- initialization forall(q2(X, aspirin, 200), writeln(X)).
-:- initialization writeln("\nВ яких ліків термін придатності перевищено").
-:- initialization forall(q3(X), writeln(X)).
-:- initialization writeln("\nНа якій вулиці знаходиться аптека з певним номером телефону (997717)").
-:- initialization forall(q4(X, 997717), writeln(X)).
-:- initialization writeln("\nУ яких аптеках працюють фармацевти з заробітною платою більшою за певне число (11000) і які імена і зарплати вони мають").
-:- initialization forall(q5(X, Y, Z, 11000), format("аптека: ~a~nПрацівник: ~a~nЗарплата: ~a~n", [X, Y, Z])).
-:- initialization writeln("\nЯкий фармацевт продає певні ліки (aspirin)").
-:- initialization forall(q6(X, aspirin), writeln(X)).
+:- writeln("\nТелефон аптеки, де є потрібні ліки (aspirin)").
+:- forall(q1(X, aspirin), writeln(X)).
+:- writeln("\nВ якій аптеці ціна на задані ліки є меншою за визначену величину (aspirin, < 200)").
+:- forall(q2(X, aspirin, 200), writeln(X)).
+:- writeln("\nВ яких ліків термін придатності перевищено").
+:- forall(q3(X), writeln(X)).
+:- writeln("\nНа якій вулиці знаходиться аптека з певним номером телефону (997717)").
+:- forall(q4(X, 997717), writeln(X)).
+:- writeln("\nУ яких аптеках працюють фармацевти з заробітною платою більшою за певне число (11000) і які імена і зарплати вони мають").
+:- forall(q5(X, Y, Z, 11000), format("аптека: ~a~nПрацівник: ~a~nЗарплата: ~a~n", [X, Y, Z])).
+:- writeln("\nЯкий фармацевт продає певні ліки (aspirin)").
+:- forall(q6(X, aspirin), writeln(X)).
