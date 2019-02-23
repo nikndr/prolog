@@ -32,12 +32,11 @@ roman__(N, ['X'|Roman]) :- N < 40,
 roman__(N, ['XL'|Roman]) :- N < 50,
                            M is N - 40,
                            roman__(M, Roman).
-roman__(N, ['L'|Roman]) :- N < 90,
-                           M is N - 50,
-                           roman__(M, Roman).
-roman_(N, R) :- roman__(N, L),
-                           atomics_to_string(L, R).
-roman(N, R) :- maplist(roman_, N, R).
+roman__(50, ['L']).
+roman__(N, ["_"]) :- N > 50, writeln("Only numbers <= 50 are supported."), !.
+roman(N, R) :- roman__(N, L),
+                atomics_to_string(L, R).
+romanList(N, R) :- maplist(roman, N, R).
 
 % 4. Напишіть предикат, що здійснює циклічний зсув елементів списку на один вправо.
 shift(L, [H|T]) :- append(T, [H], L).
@@ -60,8 +59,8 @@ task5(M, V, Res) :- mult(M, V, Res, []).
 :- writeln("IN: [1,2,3,1]\nEXPECTED OUT: [change_done,2,3,change_done] <~> replaced 1").
 :- write("OUT: "), replace(1, [1,2,3,1], X), writeln(X).
 :- writeln("\ntask 3").
-:- writeln("IN: [49,48,11,22]\nEXPECTED OUT: [XLIX,XLVIII,XI,XXII]").
-:- write("OUT: "), roman([49,48,11,22], X), writeln(X).
+:- writeln("IN: [49,48,11,22,51,1000,22]\nEXPECTED OUT: [XLIX,XLVIII,XI,XXII,_,_,XXII]").
+:- write("OUT: "), romanList([49,48,11,22,51,1000,22], X), writeln(X).
 :- writeln("\ntask 4").
 :- writeln("IN: [1,2,3,4,5,4,2,1]\nEXPECTED OUT: [1,1,2,3,4,5,4,2]").
 :- write("OUT: "), shift([1,2,3,4,5,4,2,1], X), writeln(X).
